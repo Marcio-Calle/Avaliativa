@@ -28,9 +28,7 @@
         border-left: solid !important;
         border-width: 0 1px !important;
       }
-      .ass{
-        font-family: 'Island Moments', cursive !important;
-      }
+      
      
      
     </style>
