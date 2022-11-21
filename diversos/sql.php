@@ -21,6 +21,7 @@
     }
 
     $criacao = array(
+
       "CREATE TABLE IF NOT EXISTS Clientes(
         id_cliente int(5) AUTO_INCREMENT NOT NULL,
         nome_completo varchar(100) NOT NULL,
@@ -30,6 +31,7 @@
         password varchar(20) NOT NULL,
         primary key (id_cliente)
       );",
+
       "CREATE TABLE IF NOT EXISTS Produtos(
         id_produto int(5) AUTO_INCREMENT NOT NULL,
         descricao varchar(100) NOT NULL,
@@ -37,12 +39,14 @@
         preco decimal(10,3) NOT NULL,
         primary key (id_produto)
       );",
+
       "CREATE TABLE IF NOT EXISTS Pedidos(
         id_pedido int(5) AUTO_INCREMENT NOT NULL,
         id_cliente int(5) NOT NULL,
         date_time_pedido date NOT NULL,
         primary key (id_pedido)
       );"
+      
     );
     
 

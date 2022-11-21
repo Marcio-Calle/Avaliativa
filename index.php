@@ -3,10 +3,6 @@
     session_start();
     include 'diversos\sql.php';
 
-    $conexao = $_SESSION['conexao']['bd'];
-
-    $cria_tabela = $_SESSION['sql']['cria_tabela'];
-
 
     if(empty($_SESSION['lista'])){
         $prod1 = new Produto;
@@ -38,5 +34,5 @@
     
     
     // session_destroy();
-    // header('location: produtos.php');
+    header('location: produtos.php');
 ?>
