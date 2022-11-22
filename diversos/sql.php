@@ -2,7 +2,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "1234";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password);
@@ -36,6 +36,7 @@
         id_produto int(5) AUTO_INCREMENT NOT NULL,
         descricao varchar(100) NOT NULL,
         quantidade int NOT NULL,
+        imagem int(5),
         preco decimal(10,3) NOT NULL,
         primary key (id_produto)
       );",
