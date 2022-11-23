@@ -46,10 +46,18 @@
         id_cliente int(5) NOT NULL,
         date_time_pedido date NOT NULL,
         primary key (id_pedido)
+
+      );",
+
+      "CREATE TABLE IF NOT EXISTS ItensPedidos(
+        id_itenspedidos int(5) AUTO_INCREMENT, 
+        id_pedido int(5) NOT NULL,
+        id_cliente int(5) NOT NULL,
+        quantidade int(5) NOT NULL,
+        primary key (id_itenspedidos)    
       );"
-      
     );
-    
+
 
 
      foreach ($criacao as $value) $conn->query($value); 
