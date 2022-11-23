@@ -1,5 +1,6 @@
 <?php
 session_start();
+$carrinho = false;
 include "diversos\header.php";
 include "diversos/navbar.php";
 
