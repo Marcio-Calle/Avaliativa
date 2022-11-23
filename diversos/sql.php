@@ -55,6 +55,12 @@
         id_cliente int(5) NOT NULL,
         quantidade int(5) NOT NULL,
         primary key (id_itenspedidos)    
+      );",
+
+      "CREATE TABLE IF NOT EXISTS Imagens(
+        id_imagem int(5) AUTO_INCREMENT,
+        nome_imagem varchar(100) not null,
+        primary key (id_imagem)   
       );"
     );
 
