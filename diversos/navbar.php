@@ -2,11 +2,10 @@
   <div class="container-fluid">
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul class="navbar-nav">
-            
-            <li class="nav-item mt-3" style=" margin-right: 30%">
-              <a class="nav-link active" aria-current="page" href="index.php"><p class="h3">Home</p> </a>
+            <li class="nav-item mt-3" >
+              <a class="nav-link active " style="margin-left: -50%;" aria-current="page" href="index.php"><p class="h3">Home</p> </a>
             </li>
-            <li class="nav-item" style="margin-right: 30%">
+            <li class="nav-item" style="margin-right: 18%; margin-left: 5%;">
               <a class="nav-link active" aria-current="page" href="index.php"><div style="background-color: white; border-radius: 30px"><img style="width: 80px" src="img/icone2.png" alt=""></div></a>
             </li>
           
