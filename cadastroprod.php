@@ -18,8 +18,16 @@ include "diversos/navbar.php";
                     <div class="card-body">
                         <form action="registrar.php?acao=cadastro-prod" enctype="multipart/form-data" method="post">
                             <div class="mb-3">
+                                <?php
+                                    if(isset($_GET['erro'])){
+                                        if($_GET['erro'] == '32'){
+                                            echo "<label style='color: red;'> Tipo de arquivo não válido !</label><br>";
+                                        }
+                                    }
+                                ?>
                                 <label for="formFile" class="form-label">Imagem do produto</label>
                                 <input class="form-control" name="img" type="file">
+                                <label for="formFile">Tipos aceito: JPG, PNG</label>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nome do produto</label>

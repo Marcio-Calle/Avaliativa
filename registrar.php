@@ -1,9 +1,21 @@
 <?php
-echo "<pre>";
+include 'diversos/sql.php';
+
 if($_FILES['img']['error'] === 0){
-    echo "sem erros amigo";
+
+    $imagem = $_FILES['img']['name'];
+    $image_nome = uniqid();
+    $extensao = strtolower(pathinfo($imagem,PATHINFO_EXTENSION));
+    if($extensao != 'jpg' && $extensao != 'png'){
+        die(header('location: cadastroprod.php?erro=32'));
+    }
+    $imagem = $image_nome.'.'.$extensao;
+
+    move_uploaded_file($_FILES['img']['tmp_name'],'img/'.$imagem);
     
-    move_uploaded_file($_FILES['img']['tmp_name'],'img/'.$_FILES['img']['name']);
+
+    $sql = "Insert into imagens (nome_imagem) values ('$imagem')";
+
+    $conn->query($sql);
 }else{echo 'deu ruim';};
-print_r($_POST);
 ?>
