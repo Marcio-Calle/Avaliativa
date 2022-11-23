@@ -7,7 +7,7 @@
               <a class="nav-link active" aria-current="page" href="index.php"><p class="h3">Home</p> </a>
             </li>
             <li class="nav-item" style="margin-right: 30%">
-              <a class="nav-link active" aria-current="page" href="index.php"><div style="background-color: white; border-radius: 30px"><img style="width: 80px" src="img/icone2.png" alt=""></div></a>
+              <a class="nav-link active" aria-current="page" href="index.php"><div style="background-color: white; border-radius: 30px"><img style="width: 80px" src="img/icone2.png"></div></a>
             </li>
           
             <li class="nav-item mt-3">
