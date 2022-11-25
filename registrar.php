@@ -17,5 +17,6 @@ if($_FILES['img']['error'] === 0){
     $sql = "Insert into imagens (nome_imagem) values ('$imagem')";
 
     $conn->query($sql);
+    header('location: cadastroprod.php');
 }else{echo 'deu ruim';};
 ?>
