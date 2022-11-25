@@ -37,7 +37,7 @@
         descricao varchar(100) NOT NULL,
         quantidade int NOT NULL,
         imagem int(5),
-        preco decimal(10,3) NOT NULL,
+        preco decimal(10,2) NOT NULL,
         primary key (id_produto)
       );",
 

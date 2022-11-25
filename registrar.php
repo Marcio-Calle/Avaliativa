@@ -1,22 +1,46 @@
 <?php
 include 'diversos/sql.php';
 
-if($_FILES['img']['error'] === 0){
 
+    $nome = $_POST['nome'];
+    $preco = $_POST['preco'];
+    $estoque = $_POST['estoque'];
     $imagem = $_FILES['img']['name'];
+if($_FILES['img']['error'] === 0){
+    
+   
     $image_nome = uniqid();
     $extensao = strtolower(pathinfo($imagem,PATHINFO_EXTENSION));
     if($extensao != 'jpg' && $extensao != 'png'){
         die(header('location: cadastroprod.php?erro=32'));
     }
-    $imagem = $image_nome.'.'.$extensao;
+   
+    if($nome != '' && $preco != '' && $estoque != ''){
 
-    move_uploaded_file($_FILES['img']['tmp_name'],'img/'.$imagem);
+        $imagem = $image_nome.'.'.$extensao;
+
+        move_uploaded_file($_FILES['img']['tmp_name'],'img/'.$imagem);
+        
     
+        $sql = "Insert into imagens (nome_imagem) values ('$imagem')";
+    
+        $conn->query($sql);
+    
+        $sql = 'SELECT LAST_INSERT_ID()';
+        
+        $result = $conn->query($sql);
+    
+        $imagem = $result->fetch_assoc()['LAST_INSERT_ID()'];
 
-    $sql = "Insert into imagens (nome_imagem) values ('$imagem')";
+        $sql ="Insert into produtos (descricao,quantidade,preco,imagem) values ('$nome','$estoque','$preco','$imagem')";
 
-    $conn->query($sql);
+        $conn->query($sql);
+        
+    }else die(header('location: cadastroprod.php?erro=34&&nome='.$nome.'&&preco='.$preco.'&&estoque='.$estoque.''));
+
     header('location: cadastroprod.php');
-}else{echo 'deu ruim';};
+}else if( $_FILES['img']['error'] == 4){
+    die(header('location: cadastroprod.php?erro=33&&nome='.$nome.'&&preco='.$preco.'&&estoque='.$estoque.''));
+
+};
 ?>

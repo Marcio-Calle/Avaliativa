@@ -19,31 +19,54 @@ include "diversos/navbar.php";
                         <form action="registrar.php?acao=cadastro-prod" enctype="multipart/form-data" method="post">
                             <div class="mb-3">
                                 <?php
+                                    $erro = 0;
                                     if(isset($_GET['erro'])){
                                         if($_GET['erro'] == '32'){
                                             echo "<label style='color: red;'> Tipo de arquivo não válido !</label><br>";
+                                            
+                                        }
+                                        if($_GET['erro'] == '33'){
+                                            echo "<label style='color: red;'> Necessário envio da imagem !</label><br>";
+                                            $nome =  $_GET['nome'];
+                                            $preco = $_GET['preco'];
+                                            $estoque = $_GET['estoque'];
+                                            $erro = 33;
+                                        }
+                                        if($_GET['erro'] == '34'){
+                                          $nome =  $_GET['nome'];
+                                          $preco = $_GET['preco'];
+                                          $estoque = $_GET['estoque'];
+                                          $erro = 34;
                                         }
                                     }
                                 ?>
                                 <label for="formFile" class="form-label">Imagem do produto</label>
-                                <input class="form-control" name="img" type="file">
+                                <input class="form-control" name="img"  type="file">
                                 <label for="formFile">Tipos aceito: JPG, PNG</label>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nome do produto</label>
-                                <input type="text" name="nome" class="form-control">
+                                <label for="exampleFormControlInput1" class="form-label">Nome do produto</label> 
+                                <?php if($erro == 34 || $erro == 33){if($nome == ''){echo '<label style="color: red">* Informação obrigatória!!</label>';}} ?>
+                                <br>
+                                <input type="text" <?php if($erro == 34 || $erro == 33) echo 'value="'.$nome.'"';?> name="nome" class="form-control">
                             </div>
                             
-                            <div class="mb-3">
+                            <div class="mb-3 ">
                                 <label for="exampleFormControlInput1" class="form-label">Quantidade em estoque</label>
+                                <?php if($erro == 34 || $erro == 33){if($estoque == ''){echo '<label style="color: red">* Informação obrigatória!!</label>';}} ?>
+                                <br>   
                                 <div class="col-2">
-                                    <input type="text" name="preco" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <input type="text" name="estoque" <?php if($erro == 34 || $erro == 33) echo 'value="'.$estoque.'"';?> class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div class="col">
                                 <div class="mb-5">
                                     <label for="exampleFormControlInput1" class="form-label">Preço do produto</label>
-                                    <input type="text" name="preco" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    <?php if($erro == 34 || $erro == 33){if($preco == ''){echo '<label style="color: red">* Informação obrigatória!!</label>';}} ?>
+                                    <div class="col-5">
+                                        <input type="text" name="preco" <?php if($erro == 34 || $erro == 33) echo 'value="'.$preco.'"';?> class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="col text-center">
