@@ -2,7 +2,10 @@
 include 'diversos/sql.php';
 
 
-    $nome = $_POST['nome'];
+$acao = $_GET['acao'];
+
+if($acao == 'cadastro-prod'){
+  $nome = $_POST['nome'];
     $preco = $_POST['preco'];
     $estoque = $_POST['estoque'];
     $imagem = $_FILES['img']['name'];
@@ -43,4 +46,20 @@ if($_FILES['img']['error'] === 0){
     die(header('location: cadastroprod.php?erro=33&&nome='.$nome.'&&preco='.$preco.'&&estoque='.$estoque.''));
 
 };
+   
+}
+
+
+if($acao == 'registro-clientes'){
+    $nome = $_POST['nome'];  
+    if($_POST['nome'] == '' || $_POST['telefone'] == '' || $_POST['email'] == '' || $_POST['senha'] == '' || $_POST['confsenha'] == '')
+    echo 'campos vazios';
+    if($_POST["senha"] != $_POST["confsenha"]){
+        echo 'senhas diferentes';
+    } 
+} 
+
+
+  
+
 ?>
