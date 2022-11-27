@@ -1,17 +1,48 @@
 <?php
+include 'diversos/sql.php';
 include 'class\Produto.class.php'; 
+include "class/Cliente.class.php";
+
 session_start();
 $carrinho = true;
 include 'diversos\header.php'; 
 include 'diversos\navbar.php';
 
 
-
+$salvo = false;
 // session_destroy();
-
+if(isset($_GET['pedido'])){
+    $numero = $_GET['pedido'];
+    $salvo = true;
+}
+if($salvo == true){
+    echo '<div id="exampleModalLive" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" style="display: block; padding-right: 15px;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLiveLabel">Notificação</h5>
+          <a href="listar.php">
+            <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+          </a>  
+        </div>
+        <div class="modal-body">
+          <p>Pedido '.$numero.' realizado com sucesso!</p>
+        </div>
+        <div class="modal-footer">
+            <a href="listar.php">
+          <button type="button" href="listar.php" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>';
+}
 ?>
+
+
 <div class="container">
-    
     <div class="row mt-5">
         <div class="col">
             <div class="card" style="background-color: #212429">
@@ -33,7 +64,7 @@ include 'diversos\navbar.php';
                             <tbody>
                                 <?php
                                     if(!empty($_SESSION['carrinho'])){
-                                        
+                                        print_r($_SESSION['carrinho']);
                                         $total = 0;
                                         foreach($_SESSION['carrinho'] as $ind => $c){
                                             $total += $c->Valor * $c->Quantidade;
@@ -60,7 +91,7 @@ include 'diversos\navbar.php';
                                 ?>
                                             <tr >
                                             <td>
-                                                <img class="float-start" style="border-radius: 50%;margin-left: 100px;margin-right: 30px; width: 50px"<?php echo $c->Img ?>>
+                                                <img class="float-start" style="border-radius: 50%;margin-left: 100px;margin-right: 30px; width: 50px" src=<?php echo 'img/produtos/'.$c->Img ?>>
                                                 <p style="padding-top: 10px;"><?php echo $c->Nome?></p>
                                             </td>
                                             <td  style="text-align: center; vertical-align: middle;"><?php echo "R$ ",$c->Valor * $c->Quantidade?></td>
@@ -82,7 +113,9 @@ include 'diversos\navbar.php';
                                             <th style="text-align: center; vertical-align: middle;">
                                                 <a  href="limpar.php" class="btn btn-outline-light">Esvaziar Carrinho</a>
                                             </th>
-                                            <th></th>
+                                            <th>
+                                                <a  href="comprar.php" class="btn btn-outline-light">Confirmar Compra</a>
+                                            </th>
                                             <th colspan="3"  style="text-align: center; vertical-align: middle;">
                                                 <h3>TOTAL: <?php echo $total?></h3>
                                             </th>

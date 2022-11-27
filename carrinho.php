@@ -1,20 +1,25 @@
 <?php
 include 'class/Produto.class.php';
+include 'diversos/sql.php';
 session_start();
-
 $id = $_GET['id'];
+$sql = 'select * from produtos where id_produto = '.$id.'';
+$result = $conn->query($sql);
+$result = $result->fetch_assoc();
+if($result['promocao'] == 1){
+    $preco = $result['preco']*(100 - $result['promocao_valor'])/100;
+}else $preco = $result['preco'];
+$nome = $result['descricao'];
 
-
-$nome = $_SESSION["lista"][$id]->Nome;
-$preco = $_SESSION["lista"][$id]->Valor;
 $qtd = $_POST['quant'];
-$img = $_SESSION["lista"][$id]->Img;
+$sql = 'select * from imagens where id_imagem = '.$result['imagem'].'';
+$result = $conn->query($sql);
+$result = $result->fetch_assoc();
+$img = $result['nome_imagem'];
+
 $prod= new Produto;
 
-$prod->Nome = $nome;
-$prod->Valor = $preco;
-$prod->Quantidade = $qtd;
-$prod->Img = $img;
+$prod->Criar($nome,$preco,$qtd,$img,$id);
 
 
 
@@ -40,7 +45,7 @@ if(!empty($_SESSION['carrinho'])){
     $_SESSION['acao'][0]++;
 }
 
-$_SESSION['lista'][$id]->Quantidade = 1;
+
 
 header("location: index.php");
 ?>

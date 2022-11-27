@@ -1,4 +1,5 @@
 <?php
+include "class/Cliente.class.php";
 session_start();
 $carrinho = false;
 include 'diversos/header.php';
@@ -8,13 +9,21 @@ include 'diversos/navbar.php';
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-5">
-                <div class="card">
+                <div class="card mb-5">
                     <div class="card-header text-center h3">Cadatro de Clientes</div>
                     <div class="card-body">
-                    <form method="post" action="registrar.php?acao=registro-clientes">
+                    <form method="post" enctype="multipart/form-data" action="registrar.php?acao=registro-clientes">
+                <div class="mb-3">
+                    <label class="form-label">Foto de perfil</label>
+                    <input type="file" name="img" class="form-control" >
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Nome Completo</label>
                     <input type="text" name="nome" class="form-control" >
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Usuário</label>
+                    <input type="text" name="user" class="form-control" >
                 </div>
                 <div class="mb-3">
                     <label  class="form-label">Email</label>
@@ -32,15 +41,21 @@ include 'diversos/navbar.php';
                     <Label class="form-label">Confirme Senha</label>
                     <input type="password" name="confsenha"class="form-control"required>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                
                 <?php
                 if(isset($_GET['ERRO'])){
 
                     if($_GET['ERRO']=='telefone'){
-                        echo '<label style="color: red">informações imcorretas</label>';
+                        echo '<br><label class="mb-3" style="color: red">informações imcorretas</label>';
+                    }else
+                    if($_GET['ERRO']=='senha'){
+                        echo '<br><label class="mb-3" style="color: red">Senhas não coecidem!</label>';
                     }
                 } 
                 ?>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-dark mt-3 mb-3">Confirmar</button>
+                </div>
                 </form>
                     </div>
                 </div>

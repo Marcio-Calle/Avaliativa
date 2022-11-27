@@ -1,6 +1,8 @@
 <?php
+include 'class/Cliente.class.php';
 session_start();
 $carrinho = false;
+
 include "diversos\header.php";
 include "diversos/navbar.php";
 
@@ -69,6 +71,15 @@ include "diversos/navbar.php";
                                     </div>
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="mb-5">
+                                    <label class="form-label">Promocional</label><br>
+                                    <input type="checkbox"  name="desconto" id="desconto">
+                                    <label class="form-label">Desconto</label><br>
+                                    <label  class="form-label" style="display: none" id="valor-lb" >Valor do desconto</label><br>
+                                    <input type="text" name="valor_desconto" style="display: none" id="valor" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                </div>
+                            </div>
                             <div class="col text-center">
                                 <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
                             </div>
@@ -80,7 +91,20 @@ include "diversos/navbar.php";
     </div>
     
 </body>
-
+<script>
+    $(document).ready(function(){
+        $('#desconto').click(function(){
+            if($('#desconto').prop('checked')){
+                $('#valor').show();
+                $('#valor-lb').show();
+                
+            }else{
+                $('#valor').hide();
+                $('#valor-lb').hide();
+            }
+        })
+    })
+</script>
 <?php
 include "diversos/footer.php";
 

@@ -2,7 +2,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "1234";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password);
@@ -27,6 +27,7 @@
         nome_completo varchar(100) NOT NULL,
         email varchar(250) NOT NULL,
         telefone varchar(15),
+        adm bit,
         username varchar(25) NOT NULL,
         password varchar(20) NOT NULL,
         primary key (id_cliente)
@@ -37,6 +38,8 @@
         descricao varchar(100) NOT NULL,
         quantidade int NOT NULL,
         imagem int(5),
+        promocao bit,
+        promocao_valor int(3),
         preco decimal(10,2) NOT NULL,
         primary key (id_produto)
       );",
@@ -44,7 +47,7 @@
       "CREATE TABLE IF NOT EXISTS Pedidos(
         id_pedido int(5) AUTO_INCREMENT NOT NULL,
         id_cliente int(5) NOT NULL,
-        date_time_pedido date NOT NULL,
+        date_time_pedido datetime NOT NULL,
         primary key (id_pedido)
 
       );",
@@ -52,7 +55,7 @@
       "CREATE TABLE IF NOT EXISTS ItensPedidos(
         id_itenspedidos int(5) AUTO_INCREMENT, 
         id_pedido int(5) NOT NULL,
-        id_cliente int(5) NOT NULL,
+        id_produto int(5) NOT NULL,
         quantidade int(5) NOT NULL,
         primary key (id_itenspedidos)    
       );",
@@ -67,5 +70,5 @@
 
 
      foreach ($criacao as $value) $conn->query($value); 
-    
+
 ?>

@@ -19,6 +19,7 @@
         font-family: 'Patua One', cursive !important;
        
       }
+     
       table {
         border-collapse: collapse !important;
       }

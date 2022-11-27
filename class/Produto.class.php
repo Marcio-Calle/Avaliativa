@@ -4,6 +4,7 @@ class Produto{
     var $Valor;
     var $Quantidade;
     var $Img;
+    var $Id;
 
     function Adcionar(){
         
@@ -15,11 +16,12 @@ class Produto{
         
         
     }
-    function Criar($a,$b,$c){
+    function Criar($a,$b,$c,$d,$e){
         $this->Nome = $a;
         $this->Valor = $b;
-        $this->Quantidade = 1;
-        $this->Img = $c;
+        $this->Quantidade = $c;
+        $this->Img = $d;
+        $this->Id = $e;
     }
 }
 ?>
