@@ -2,7 +2,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "1234";
+    $password = "";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password);
@@ -29,6 +29,7 @@
         telefone varchar(15),
         adm bit,
         username varchar(25) NOT NULL,
+        imagem int(5) not null,
         password varchar(20) NOT NULL,
         primary key (id_cliente)
       );",

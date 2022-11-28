@@ -39,7 +39,8 @@ if($acao == 'cadastro-prod'){
             
             $result = $conn->query($sql);
         
-            $imagem = $result->fetch_assoc()['LAST_INSERT_ID()'];
+            $imagem = $result->fetch_assoc();
+            $imagem = $imagem['LAST_INSERT_ID()'];
 
             $sql ="Insert into produtos (descricao,quantidade,preco,imagem,promocao,promocao_valor) values ('$nome',$estoque,$preco,'$imagem',$promocao,$valor_promocao)";
 
@@ -102,7 +103,8 @@ if($acao == 'registro-clientes'){
                 
                 $result = $conn->query($sql);
             
-                $imagem = $result->fetch_assoc()['LAST_INSERT_ID()'];
+                $imagem = $result->fetch_assoc();
+                $imagem = $imagem['LAST_INSERT_ID()'];
 
             }else{$imagem = 0;}
         
